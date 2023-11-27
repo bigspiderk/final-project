@@ -80,13 +80,13 @@ class Game:
                 if self.sentence[i] == guess:
                     self.guess_str = self.guess_str[:i] + guess + self.guess_str[i+1:]
                     if self.guess_str == self.sentence:
-                        self.win()
+                        self.win_game()
             return
         self.guess_str = self.sentence
-        self.win()
+        self.win_game()
 
 
-    def win(self):
+    def win_game(self):
         self.game_won = True
         self.display_hangman()
         print(self.guess_str, end="\n\n")
