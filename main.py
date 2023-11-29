@@ -108,8 +108,5 @@ class Game:
                     sleep(1)
             else:
                 self.guess_correct(user_guess)
-    
-
-    
 
 Game().start_game()
