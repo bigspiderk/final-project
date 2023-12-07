@@ -29,15 +29,14 @@ I
 """
 
 class Game:
-    misses = 0
-    sentence = rs().bare_bone_sentence().lower().replace(".", "")
-    displayed_characters = []
     tries_dict = {1: "O", 2: "|", 3: "/", 4: "\\", 5: "/2", 6: " \\2"}
-    letter_bank = []
     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    game_won = False
-
     def __init__(self):
+        self.misses = 0
+        self.game_won = False
+        self.displayed_characters = []
+        self.letter_bank = []
+        self.sentence = rs().bare_bone_sentence().lower().replace(".", "")
         self.guess_str = self.sentence
         for i in range(len(self.sentence)):
             if self.sentence[i] in self.alphabet:
