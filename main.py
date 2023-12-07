@@ -29,11 +29,11 @@ I
 """
 
 class Game:
-    tries_dict = {1: "O", 2: "|", 3: "/", 4: "\\", 5: "/2", 6: " \\2"}
-    alphabet = "abcdefghijklmnopqrstuvwxyz"
     def __init__(self):
         self.misses = 0
         self.game_won = False
+        self.alphabet = "abcdefghijklmnopqrstuvwxyz"
+        self.tries_dict = {1: "O", 2: "|", 3: "/", 4: "\\", 5: "/2", 6: " \\2"}
         self.displayed_characters = []
         self.letter_bank = []
         self.sentence = rs().bare_bone_sentence().lower().replace(".", "")
