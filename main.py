@@ -30,13 +30,19 @@ I
 """
 
 class Game:
-    def __init__(self):
+    def __init__(self, difficulty:str ='easy'):
         self.misses = 0
         self.game_won = False
         self.tries_dict = {1: "O", 2: "|", 3: "/", 4: "\\", 5: "/2", 6: " \\2"}
         self.displayed_characters = []
         self.letter_bank = []
-        self.sentence = rs().bare_bone_sentence().lower().replace(".", "")
+        if difficulty == 'easy':
+            self.sentence = rs().bare_bone_sentence()
+        if difficulty == 'normal':
+            self.sentence = rs().simple_sentence()
+        if difficulty == 'hard':
+            self.sentence = rs().sentence()
+        self.sentence = self.sentence.lower().replace(".", "")
         self.guess_str = ''.join(list(map(lambda x:'_' if x in alphabet else x, self.sentence)))
 
 
@@ -102,7 +108,14 @@ class Game:
                     self.display_hangman()
                     print(f"Game Over, the phrase was {self.sentence}")
                     sleep(1)
+                    return
+                print('Incorrect Guess!')
+                sleep(1)
             else:
                 self.guess_correct(user_guess)
 
-Game().start_game()
+difficulty = ''
+while difficulty not in ['easy', 'normal', 'hard']:
+    difficulty = input('Enter Difficulty (easy, normal, hard): ').lower()
+
+Game(difficulty).start_game()
