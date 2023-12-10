@@ -17,6 +17,7 @@ if not check_packages_installed():
 
 from wonderwords import RandomSentence as rs
 
+alphabet = "abcdefghijklmnopqrstuvwxyz"
 hangman_string = """
 _________
 I       I
@@ -32,15 +33,11 @@ class Game:
     def __init__(self):
         self.misses = 0
         self.game_won = False
-        self.alphabet = "abcdefghijklmnopqrstuvwxyz"
         self.tries_dict = {1: "O", 2: "|", 3: "/", 4: "\\", 5: "/2", 6: " \\2"}
         self.displayed_characters = []
         self.letter_bank = []
         self.sentence = rs().bare_bone_sentence().lower().replace(".", "")
-        self.guess_str = self.sentence
-        for i in range(len(self.sentence)):
-            if self.sentence[i] in self.alphabet:
-                self.guess_str = self.guess_str[:i] + "_" + self.guess_str[i+1:]
+        self.guess_str = ''.join(list(map(lambda x:'_' if x in alphabet else x, self.sentence)))
 
 
     def display_hangman(self):
@@ -56,7 +53,7 @@ class Game:
 
     def is_valid_guess(self, guess):
         for char in guess.lower():
-            if char not in self.alphabet and not char == " ":
+            if char not in alphabet and not char == " ":
                 print("Please use phrases uses only letters and spaces")
                 sleep(1)
                 return False
