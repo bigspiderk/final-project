@@ -4,8 +4,8 @@ from subprocess import run
 import pkg_resources
 
 def check_packages_installed():
-    installed_packages = [pkg.key for pkg in pkg_resources.working_set]
-    return "wonderwords" in installed_packages
+    installed_packages = [pkg.key for pkg in pkg_resources.working_set if pkg.key == 'wonderwords']
+    return len(installed_packages) > 0
 
 if not check_packages_installed():
     choice = input("This program requires the wonderwords module, Would you like to install it? [Y/n] ").lower()
