@@ -54,7 +54,7 @@ class Game:
     def is_valid_guess(self, guess):
         for char in guess.lower():
             if char not in alphabet and not char == " ":
-                print("Please use phrases uses only letters and spaces")
+                print("Guesses can only use letters and spaces")
                 sleep(1)
                 return False
         if len(guess) == 1 and guess in self.letter_bank:
