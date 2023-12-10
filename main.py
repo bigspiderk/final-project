@@ -57,7 +57,11 @@ class Game:
                 line = f"{line}\t\t\tLetters Used: {', '.join(self.letter_bank)}"
             print(line)
 
-    def is_valid_guess(self, guess):
+    def is_valid_guess(self, guess:str):
+        if guess.replace(" ", "") == "":
+            print('Invalid Guess!')
+            sleep(1)
+            return False
         for char in guess.lower():
             if char not in alphabet and not char == " ":
                 print("Guesses can only use letters and spaces")
@@ -70,13 +74,13 @@ class Game:
         
         return True
     
-    def check_guess(self, guess):
+    def check_guess(self, guess:str):
         if len(guess) == 1:
             self.letter_bank.append(guess)
             return guess in self.sentence
         return guess == self.sentence
 
-    def guess_correct(self, guess):
+    def guess_correct(self, guess:str):
         if len(guess) == 1:
             for i in range(len(self.sentence)):
                 if self.sentence[i] == guess:
